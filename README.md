@@ -5,3 +5,8 @@
 ###我们是有灵魂的程序员,让代码富含诗意
 
 ##[开源协议之间的区别](https://blog.csdn.net/qq_39239110/article/details/92834885)
+
+##用传统方式把修改过的代码上传到github
+1.git add
+2.git commit -m  '提交信息'
+3.git push
