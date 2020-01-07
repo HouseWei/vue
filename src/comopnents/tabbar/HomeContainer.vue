@@ -12,37 +12,37 @@
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-            
+          <img src="../../imgs/menu1.png" alt="" />
           <div class="mui-media-body">新闻资讯</div>
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-          <span class="mui-icon mui-icon-email"></span>
+          <img src="../../imgs/menu2.png" alt="" />
           <div class="mui-media-body">图片分享</div>
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-          <span class="mui-icon mui-icon-chatbubble"></span>
+          <img src="../../imgs/menu3.png" alt="" />
           <div class="mui-media-body">购买</div>
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-          <span class="mui-icon mui-icon-location"></span>
+          <img src="../../imgs/menu4.png" alt="" />
           <div class="mui-media-body">留言反馈</div>
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-          <span class="mui-icon mui-icon-search"></span>
+          <img src="../../imgs/menu5.png" alt="" />
           <div class="mui-media-body">视频专区</div>
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
-          <span class="mui-icon mui-icon-phone"></span>
+          <img src="../../imgs/menu6.png" alt="" />
           <div class="mui-media-body">联系我</div>
         </a>
       </li>
@@ -100,12 +100,12 @@ export default {
   }
 }
 
-.mui-grid-view.mui-grid-9{
-    background-color: #fff;
-    border: none;
+.mui-grid-view.mui-grid-9 {
+  background-color: #fff;
+  border: none;
 }
 
-.mui-grid-view.mui-grid-9 .mui-table-view-cell{
-    border: none;
+.mui-grid-view.mui-grid-9 .mui-table-view-cell {
+  border: none;
 }
 </style>
