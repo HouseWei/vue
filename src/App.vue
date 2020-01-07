@@ -4,8 +4,9 @@
         <mt-header fixed title="富土康程序员-Vue项目"></mt-header>
         
         <!-- 中间 路由 router-view 区域 -->
+		<transition >
         <router-view></router-view>
-
+		</transition>
 
         <!-- 底部 Tabbar 区域 -->
         <nav class="mui-bar mui-bar-tab">
@@ -38,5 +39,22 @@ export default {
 <style lang="scss" scoped>
 .app-container{
     padding-top: 40px;
+	overflow-x: hidden;
+
+}
+
+// 中间区域切换动画
+.v-enter{
+	opacity: 0;
+	transform: translateX(100%);
+}
+.v-leave-to{
+	opacity: 0;
+	transform: translateX(-100%);
+	position: absolute;
+}
+.v-enter-active,
+.v-leave-active{
+	transition: all .5s ease;
 }
 </style>
