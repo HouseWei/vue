@@ -30,3 +30,6 @@
 
 ##加载首页轮播图数据
 1.获取数据,如何获取: vue-resource
+2.使用 vue-resource 的 this.$http.get 获取数据
+3.获取到的数据要保存到 data 身上
+4.使用v-for 循环渲染每个 item

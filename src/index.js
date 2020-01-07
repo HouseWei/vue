@@ -10,7 +10,7 @@ import VueResource from 'vue-resource'
 //2.2 安装 vue-resource
 Vue.use(VueResource)
 
-Vue.http.options.root = 'http://www.liulongbin.top:3005'  //设置请求的根路径
+Vue.http.options.root = 'http://www.liulongbin.top:3005/'  //设置请求的根路径
 Vue.http.options.emulateJSON = true           //全局设置post请求表单数据
 
 //导入 MUI 样式   
