@@ -41,6 +41,7 @@ export default {
             this.newsInfo = result.body.message[0];
         }else {
             //失败
+            
         }
       });
     }
