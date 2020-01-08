@@ -5,12 +5,18 @@ import VueRouter from 'vue-router'
 //1.2 安装路由
 Vue.use(VueRouter)
 
+import moment from 'moment'
+//定义全局过滤器
+Vue.filter('dataFormat', function(dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
+    return moment(dataStr).format(pattern)
+})
+
 //2.1 导入 vue-resource
 import VueResource from 'vue-resource'
 //2.2 安装 vue-resource
 Vue.use(VueResource)
-
-Vue.http.options.root = 'http://www.liulongbin.top:3005/'  //设置请求的根路径
+//设置请求的根路径
+Vue.http.options.root = 'http://www.liulongbin.top:3005/'  
 Vue.http.options.emulateJSON = true           //全局设置post请求表单数据
 
 //导入 MUI 样式   
