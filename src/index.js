@@ -32,6 +32,10 @@ import './lib/mui/css/icons-extra.css'
 // import { Header } from 'mint-ui';
 // Vue.component(Header.name, Header);
 
+//安装 图片预览插件
+import VuePreview from 'vue2-preview'
+Vue.use(VuePreview)
+
 //1.3 导入自己的 router.js 路由模块
 import router from './router'
 

@@ -3,7 +3,7 @@
     <!-- 轮播图区域 -->
     <mt-swipe :auto="4000">
       <!-- 在组件中使用v-for,需加 :key -->
-      <mt-swipe-item v-for="item in lunbotuList" :key="item.url">
+      <mt-swipe-item v-for="(item, i) in lunbotuList" :key="i">
         <img :src="item.img" alt />
       </mt-swipe-item>
     </mt-swipe>
@@ -17,16 +17,16 @@
         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/photolist">
           <img src="src/imgs/menu2.png" alt="" />
           <div class="mui-media-body">图片分享</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <router-link to="/home/goodslist">
           <img src="src/imgs/menu3.png" alt="" />
           <div class="mui-media-body">购买</div>
-        </a>
+        </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <a href="#">
@@ -63,7 +63,7 @@ export default {
   methods: {
     getSwipe() {
       //获取轮播图
-      this.$http.get("api/getimgcategory").then(result => {
+      this.$http.get("api/getlunbo").then(result => {
         if (result.body.status === 0) {
           //成功了
           console.log(result);

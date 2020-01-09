@@ -74,3 +74,71 @@
 5. 当发表评论ok后,重新刷新列表,以查看 最新的评论
  + 如果调用 getcomments 方法重新刷新列表的话,可能只能得到 最后一页的评论,前几页的评论获取不到
  + 换一种思路: 当评论成功后,在客户端,手动拼接出一个 最新的评论对象,然后 调用 数组的 unshift 方法,把最新的评论,追加到 data 中 comments 的开头, 这样,就能完美的实现刷新列表的需求
+
+ ## 改造图片分析 按钮 为路由的链接并显示对应的组件页面
+
+ ## 绘制 图片列表 组件页面结构并美化样式
+ 1. 制作 顶部滑动条
+ 2. 制作 底部的图片列表
+ ### 制作顶部滑动条的坑们:
+ 1. 需要借助于 MUI 中的 tab-top-webview-main.html
+ 2. 需要把 slider 区域的 mui-fullscreen 类去掉
+ 3. 滑动条无法正常触发滑动,通过检查官方文档,发现这是JS组件,需要被初始化一下:
+  + 导入 mui.js
+  + 调用官方提供的 方式 去初始化:
+  ```
+    mui('.mui-scroll-wrapper').scroll({
+	deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+    });
+ ```
+ 4. 我们在初始化 滑动条 的时候,导入的 mui.js ,但是,控制台报错: Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions or the arguments objects for calls to them
+  + 经过我们的合理推测,可能是 mui.js 中用到了 'caller','callee', and 'argument',而 webpack 打包好的 hundle.js 中,默认启用严格模式,所以两者冲突
+  + 解决方案: 1. 把 mui.js 中的 非严格模式的代码改掉,但是不现实;
+              2. 把 webpack 打包时候的严格模式禁用掉;( babel-plugin-transform-remove-strict-mode )
+  + 最终,选了planB 移除严格模式,使用:
+    `npm i @babel/plugin-transform-modules-commonjs @babel/plugin-transform-strict-mode -D`
+    并在在babel.config.js中
+    ```
+    plugins: [
+    "@babel/plugin-transform-runtime",
+
+    "@babel/plugin-proposal-class-properties",
+
+    ["@babel/plugin-transform-modules-commonjs", { "strictMode": false }]
+
+    ]
+5. 刚进入 图片分享页面的时候,滑动条无法正常工作, 经过分析发现,若要初始化 滑动    ```
+条,必须等 DOM元素加载完毕,所以, 把 初始化 滑动条 的代码,搬到了 mounted 生命周期函数中
+6. 当 滑动条 调试OK后,发现 tabbar 无法正常工作,这时,需把 每个 tabbar 按钮样式中的 mui-tab-item 重新修改名字,改成 mui-tab-item-lib
+7. 获取所有分类,并渲染分类列表
+
+## 制作图片列表区域
+1. 图片列表需要使用 懒加载技术,可使用 mint-ui 提供的组件 'lazy-load'
+2. 根据 'lazy-load' 的使用文档
+
+### 实现了 图片列表 懒加载 和 样式美化
+
+## 实现了 点击图片 跳转到 图片详情页面
+1. 在改造 li 成 router-link 时,需使用 tag 属性指定要渲染为 哪种元素
+
+## 实现 详情页面的布局美化,同时获取数据渲染页面
+
+## 实现 图片详情中 缩略图的功能
+1. 使用 插件 [vue-preview](https://github.com/liulongbin1314/vue2-preview) 这个缩略图插件
+2. 获取到所有的图片列表, 然后用 v-for 指定渲染页面
+3. 注意: img标签上的 class 不能去掉
+4. 注意: 每个图片数据对象中,必须有 w 和 h 属性
+
+## 绘制 商品列表 页面的基本结构并美化
+
+## 尝试 在手机上,去进行项目的预览和测试
+1. 保证手机正常运行
+2. 保证手机和开发项目的电脑 处于同一个 wifi 环境中 ,也就是说,手机可以访问到电脑ip
+3. 打开自己的 项目中 package.json 文件,在 dev 脚本中,添加一个  --host  指令,把当前 电脑 的 wifi ip地址,设置为 --host 的指令值;
+ + 如何查看自己电脑所处 wifi 的ip: 在 cmd 终端中运行 'ipconfig',查看无线网的 ip地址
+
+补充:
+1. 添加网页标题icon小图标
+    ```
+    <link rel="shortcut icon" href="图片地址" type="image/x-icon" />
+    ```
