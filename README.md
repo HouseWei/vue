@@ -105,9 +105,8 @@
     "@babel/plugin-proposal-class-properties",
 
     ["@babel/plugin-transform-modules-commonjs", { "strictMode": false }]
-
     ]
-  ```
+    ```
 5. 刚进入 图片分享页面的时候,滑动条无法正常工作, 经过分析发现,若要初始化 滑动    ```
 条,必须等 DOM元素加载完毕,所以, 把 初始化 滑动条 的代码,搬到了 mounted 生命周期函数中
 6. 当 滑动条 调试OK后,发现 tabbar 无法正常工作,这时,需把 每个 tabbar 按钮样式中的 mui-tab-item 重新修改名字,改成 mui-tab-item-lib
