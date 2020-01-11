@@ -35,7 +35,6 @@
             <!-- 2. 由于涉及到了 父子组件的嵌套, 所以,无法直接在 goodsinfo 页面中获取到 选中的商品数量值-->
             <!-- 3. 怎么解决这个问题: 涉及到 子组件向 父组件传值(事件调用机制) -->
             <!-- 4. 事件调用的本质: 父向子 传递方法,子调用这个方法,同时把 数据当做参数 传递给这个方法 -->
-
           </p>
         </div>
       </div>
@@ -71,7 +70,7 @@ export default {
       lunbotu: [], //轮播图数据
       goodsinfo: {}, //获取到的商品的信息
       ballFlag: false, //控制小球隐藏和显示
-      selectedCount: 1, //保存用户选中的商品数量,默认认为用户选择 一个
+      selectedCount: 1 //保存用户选中的商品数量,默认认为用户选择 一个
     };
   },
   created() {
@@ -109,6 +108,18 @@ export default {
     addToShopcar() {
       //添加到购物车
       this.ballFlag = !this.ballFlag;
+      // { id:商品的id, count:购买数量, price: 商品单格, selected: false }
+      //拼接出一个,要保存到 store 中 car数组里的 商品信息对象
+      const goodsinfo = {
+        id: this.id,
+        count: this.selectedCount,
+        price: this.goodsinfo.sell_price,
+        selected: true
+      };
+
+      //调用 store 中的 mutations 来将商品加入购物车
+      this.$store.commit('addToCar', goodsinfo)
+      
     },
     beforeEnter(el) {
       el.style.transform = "translate(0, 0)";
@@ -124,14 +135,14 @@ export default {
       //5. 如何获取 位置: domObject.getBoundingClientRect()
 
       //获取小球 在页面中的位置
-      const balllPosition = this.$refs.ball.getBoundingClientRect()
+      const balllPosition = this.$refs.ball.getBoundingClientRect();
       //获取徽标 在页面中的位置
-      const badgePosition = document.getElementById('badge').getBoundingClientRect();
+      const badgePosition = document
+        .getElementById("badge")
+        .getBoundingClientRect();
 
-      const xDist =badgePosition.left - balllPosition.left;
-      const yDist =badgePosition.top - balllPosition.top;
-
-
+      const xDist = badgePosition.left - balllPosition.left;
+      const yDist = badgePosition.top - balllPosition.top;
 
       el.style.transform = `translate(${xDist}px, ${yDist}px)`;
       el.style.transition = "all .5s cubic-bezier(0,0,.25,.51)";
@@ -141,11 +152,10 @@ export default {
       this.ballFlag = !this.ballFlag;
     },
     getSelectedCount(count) {
-        //当子组件把 选中的数量传递给 父组件时,把选中的值保存到 data上
-        this.selectedCount = count;
-        // console.log('父组件读到的数据为:' + count)
-    },
-
+      //当子组件把 选中的数量传递给 父组件时,把选中的值保存到 data上
+      this.selectedCount = count;
+      // console.log('父组件读到的数据为:' + count)
+    }
   },
   components: {
     swiper,
