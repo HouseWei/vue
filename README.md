@@ -142,3 +142,7 @@
     ```
     <link rel="shortcut icon" href="图片地址" type="image/x-icon" />
     ```
+2. webpack-cli 需要全局配置
+    ```
+    npm install --save-dev webpack-cli -g
+    ```
